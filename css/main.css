@@ -46,6 +46,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+body {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -87,9 +90,9 @@ p {
 .weather-today {
   margin: 1rem auto;
   width: 30%;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   text-align: center;
   border-radius: 50%;
@@ -103,7 +106,79 @@ p {
 
 .high-temp {
   border-right: 1px solid grey;
-  padding-right: .5rem; }
+  padding-right: .75rem; }
+
+.summary-today {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; }
+
+.summary {
+  font-size: 1.5rem;
+  font-weight: bold; }
+
+.weather-icon {
+  width: auto;
+  height: 4rem; }
+
+.weather-extras {
+  width: 100%;
+  border-top: 1px solid grey;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around; }
+
+.precip-container,
+.wind-container {
+  width: 50%; }
+
+.precip-container {
+  border-right: 1px solid grey; }
+
+.scroll {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  padding: .5rem;
+  margin: 0 auto; }
+
+.forecast-day .weather-icon {
+  width: auto;
+  height: 2rem; }
+
+.day {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 25%;
+  flex: 0 0 auto;
+  padding: 0 .5rem; }
+
+.day .precip,
+.day .precip-intensity-max,
+.day .day-date,
+.day .icon-holder,
+.day .wind {
+  width: 100%;
+  margin: .25rem 0; }
+
+.forecast-day .high-temp {
+  border-right: 1px solid black;
+  padding-right: .25rem; }
+
+.forecast-day .high-temp,
+.forecast-day .low-temp {
+  width: 45%; }
+
+.forecast.day {
+  flex-direction: column; }
+
+.hourly {
+  padding: 0 .5rem; }
 
 .footer {
   margin: 2rem auto; }
