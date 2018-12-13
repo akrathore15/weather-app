@@ -1,0 +1,19 @@
+.weather-today {
+    margin: 1rem auto;
+    width: 30%;
+    padding: 2rem 1.5rem;
+    @include flexbox($wrap: wrap, $justify: space-around);
+    text-align: center;
+    border-radius: $border-round;
+    border: .25rem solid green;
+}
+.current-temp {
+    font-size: 2rem;
+    font-weight: bold;
+    width: 100%;
+    margin: .5rem 0;
+}
+.high-temp {
+    border-right: 1px solid grey;
+    padding-right: .5rem;
+}

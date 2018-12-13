@@ -1,0 +1,24 @@
+// Media query mixins
+@mixin media($break) {
+    @if $break == "medium" {
+        @media (min-width: $breakpoint-medium) {
+            @content;
+        }
+    } @else if $break == "large" {
+        @media (min-width: $breakpoint-large) {
+            @content;
+        }
+    } @else {
+        @error "Oh no! No value could be retrieved for #{$break}.";
+    }
+}
+
+// Flexbox mixin
+@mixin flexbox ($display: flex, $direction: null, $justify: null, $align-self: null, $align-items: null, $wrap: null) {
+    display: $display;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align-items;
+    align-self: $align-self;
+    flex-wrap: $wrap;
+}

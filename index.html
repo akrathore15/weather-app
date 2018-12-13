@@ -18,16 +18,27 @@
                 <li><a href="">Contact</a></li>
             </ul>
         </nav>
-        <section id="main-section" class="main-section">
-            <div class="weather-today">
-                <h1>Today's weather is:</h1>
-                <p>Current temperature: <span class="current-temp"></span></p>
-                <p>Precipitation probability: <span class="precip-prob"></span></p>
-                <p>Wind(mph): <span class="wind"></span></p>
-                <p>UV Index: <span class="uv-index"></span></p>
-                <p>Summary: <span class="summary"></span></p>
+        <section id="section-primary" class="section-primary">
+            <div class="current-location section-secondary">
+                <h2><span class="location-name"></span></h2>
             </div>
-            <div class="weather-tomorrow">
+            <div class="weather-today section-secondary">
+                <!-- <h1>Today's weather is:</h1> -->
+                <span class="high-temp"></span>
+                <span class="low-temp"></span>
+                <span class="current-temp"></span>
+                <p>Weird!... feels like <span class="feels-like"></span></p>
+            </div>
+            <div class="summary-today section-secondary">
+                <!-- <span class="precip-prob"></span>
+                <span class="wind"></span>
+                <span class="uv-index"></span> -->
+                <figure class="weather-icon">
+
+                </figure>
+                <span class="summary"></span>
+            </div>
+            <div class="weather-tomorrow section-secondary">
                 <h1>Tomorrow's weather should be:</h1>
                 <p>Tomorrow's temperature high: <span class="tomorrow-temp"></span></p>
                 <p>Precipitation probability: <span class="tomorrow-precip-prob"></span></p>
@@ -35,13 +46,13 @@
                 <p>UV Index: <span class="tomorrow-uv-index"></span></p>
                 <p>Summary: <span class="tomorrow-summary"></span></p>
             </div>
-            <div class="weather-week"></div>
+            <div class="weather-week section-secondary"></div>
         </section>
         <footer id="footer" class="footer">
             <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a></p>
         </footer>
     </div>
-<!-- <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script> -->
+<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,66 @@
+.wrapper {
+    @include flexbox($direction: column);
+    margin: 1rem;
+    text-align: center;
+}
+.section-secondary {
+    margin: 1rem 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h4 {
+  font-size: .75rem;
+}
+
+h5 {
+  font-size: .5rem;
+}
+
+h6 {
+  font-size: .25rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+
+}
+
+a:active,
+.button:active {
+
+}
+
+p {
+  font-size: 1rem;
+}
+
+ol {
+    // list-style: decimal;
+}
+
+ul {
+    // list-style: disc;
+}
+
+input {
+
+}
+
+input:focus {
+
+}

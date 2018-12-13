@@ -33,12 +33,26 @@ weatherRequest.onreadystatechange = function () {
     if (weatherRequest.readyState === 4 && weatherRequest.status === 200) {
         const weatherResponse = JSON.parse(weatherRequest.responseText);
         const weatherData = weatherResponse;
-        const weatherDataCurrent = weatherData.currently;
-        const currentTemp = document.querySelector(".current-temp").innerHTML = weatherDataCurrent.temperature;
-        const precipProb = document.querySelector(".precip-prob").innerHTML = weatherDataCurrent.precipProbability;
-        const wind = document.querySelector(".wind").innerHTML = weatherDataCurrent.windSpeed;
-        const uvIndex = document.querySelector(".uv-index").innerHTML = weatherDataCurrent.uvIndex;
-        const summary = document.querySelector(".summary").innerHTML = weatherDataCurrent.summary;
+        const weatherDataToday = weatherData;
+        console.log(weatherDataToday);
+        const highTemp = document.querySelector(".high-temp").innerHTML = `${weatherDataToday.daily.data[0].temperatureHigh}&deg;`;
+        const lowTemp = document.querySelector(".low-temp").innerHTML = `${weatherDataToday.daily.data[0].temperatureLow}&deg;`;
+        const currentTemp = document.querySelector(".current-temp").innerHTML = `${weatherDataToday.currently.temperature}&deg;`;
+        const feelsLike = document.querySelector(".feels-like").innerHTML = `${weatherDataToday.currently.apparentTemperature}&deg;`;
+        // const precipProb = document.querySelector(".precip-prob").innerHTML = weatherDataToday.currently.precipProbability;
+        // const wind = document.querySelector(".wind").innerHTML = weatherDataToday.currently.windSpeed;
+        // const uvIndex = document.querySelector(".uv-index").innerHTML = weatherDataToday.currently.uvIndex;
+        let icons = new Skycons({"color": "grey"});
+        const weatherIcon = document.querySelector(".weather-icon");
+        let icon = document.createElement("canvas");
+        console.log(icon);
+        icon.setAttribute("id", `${weatherDataToday.currently.icon}`);
+
+        nocons.appendChild(icon);
+        icon.add(`${weatherDataToday.currently.icon}`, Skycons[weatherDataToday.currently.icon])
+        icons.set(`${weatherDataToday.currently.icon}`, Skycons[weatherDataToday.currently.icon]);
+        icons.play();
+        const summary = document.querySelector(".summary").innerHTML = weatherDataToday.currently.summary;
     }
 };
 weatherRequest.open("GET", "https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/38.033747,-78.468363/");
@@ -50,7 +64,7 @@ weatherTomorrowRequest.onreadystatechange = function () {
         const weatherResponse = JSON.parse(weatherTomorrowRequest.responseText);
         const weatherData = weatherResponse;
         const weatherDataTomorrow = weatherData.daily.data[0];
-        console.log(weatherDataTomorrow);
+        // console.log(weatherDataTomorrow);
         const tomorrowTemp = document.querySelector(".tomorrow-temp").innerHTML = weatherDataTomorrow.temperatureHigh;
         const tomorrowprecipProb = document.querySelector(".tomorrow-precip-prob").innerHTML = weatherDataTomorrow.precipProbability;
         const tomorrowWind = document.querySelector(".tomorrow-wind").innerHTML = weatherDataTomorrow.windSpeed;
@@ -60,3 +74,18 @@ weatherTomorrowRequest.onreadystatechange = function () {
 };
 weatherTomorrowRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/42.3601,-71.0589,${getTomorrowUnixTime()}?exclude=currently,flags`);
 weatherTomorrowRequest.send();
+
+
+
+
+
+const locationRequest = new XMLHttpRequest();
+locationRequest.onreadystatechange = function () {
+    if (locationRequest.readyState === 4 && locationRequest.status === 200) {
+        const locationResponse = JSON.parse(locationRequest.responseText);
+        const locationData = locationResponse.results;
+        const locationName = document.querySelector(".location-name").innerHTML = locationData[0].formatted_address;
+    }
+};
+locationRequest.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?place_id=ChIJj6RQ6i2Gs4kR_HSLw5bwhpA&key=AIzaSyB9hkOnaHSiOGJbt7MxnFWZMjE7RIrYTRo");
+locationRequest.send();
