@@ -74,18 +74,3 @@ weatherTomorrowRequest.onreadystatechange = function () {
 };
 weatherTomorrowRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/42.3601,-71.0589,${getTomorrowUnixTime()}?exclude=currently,flags`);
 weatherTomorrowRequest.send();
-
-
-
-
-
-const locationRequest = new XMLHttpRequest();
-locationRequest.onreadystatechange = function () {
-    if (locationRequest.readyState === 4 && locationRequest.status === 200) {
-        const locationResponse = JSON.parse(locationRequest.responseText);
-        const locationData = locationResponse.results;
-        const locationName = document.querySelector(".location-name").innerHTML = locationData[0].formatted_address;
-    }
-};
-locationRequest.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?place_id=ChIJj6RQ6i2Gs4kR_HSLw5bwhpA&key=AIzaSyB9hkOnaHSiOGJbt7MxnFWZMjE7RIrYTRo");
-locationRequest.send();
