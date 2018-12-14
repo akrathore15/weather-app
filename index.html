@@ -8,48 +8,47 @@
 </head>
 <body>
     <div class="wrapper">
-        <header id="header" class="header section-secondary">
+        <header id="header" class="header section">
             <h1>Oh the Weather Outside is Weather!</h1>
         </header>
-        <!-- <nav id="nav" class="nav section-secondary">
+        <!-- <nav id="nav" class="nav section">
             <ul>
                 <li><a href="">Home</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Contact</a></li>
             </ul>
         </nav> -->
-        <section id="section-primary" class="section-primary">
-            <div class="current-location section-secondary">
-                <h2><span class="location-name">Charlottesville, VA, USA</span></h2>
-            </div>
-            <div class="weather-today section-secondary">
-                <span class="high-temp"></span>
-                <span class="low-temp"></span>
-                <span class="current-temp"></span>
-                <p>feels like <span class="feels-like"></span></p>
-            </div>
-            <div class="summary-today section-secondary">
-                <figure class="icon-holder">
-                    <canvas class="weather-icon"></canvas>
-                    <!-- <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/> -->
-                </figure>
-                <span class="summary">Partly Cloudy</span>
-                <div class="weather-extras section-secondary">
+        <section id="main" class="main section">
+            <div class="current section-secondary">
+                <h2 class="current-location">Charlottesville, VA, USA</h2>
+                <div class="current-weather">
+                    <span class="temp-high"></span>
+                    <span class="temp-low"></span>
+                    <span class="temp-current"></span>
+                    <p>feels like <span class="temp-feels"></span></p>
+                </div>
+                <div class="current-details">
+                    <figure class="current-icon-holder">
+                        <canvas class="current-icon"></canvas>
+                    </figure>
+                    <span class="current-summary"></span>
+                </div>
+                <div class="current-extras">
                     <div class="precip-container">
                         <p>PRECIP</p>
-                        <span class="precip">10%</span>
+                        <span class="current-precip">10%</span>
                     </div>
                     <div class="wind-container">
                         <p>WIND[MPH]</p>
-                        <span class="wind">1</span>
+                        <span class="current-wind">1</span>
                     </div>
                 </div>
             </div>
             <div class="forecast section-secondary">
                 <h2>Forecast</h2>
                 <h3>Day</h3>
-                <div class="forecast-day scroll">
-                    <div class="today day">
+                <div class="forecast-day forecast-scroll">
+                    <!-- <div class="today day">
                         <span class="precip">10%</span>
                         <span class="precip-intensity-max">0"</span>
                         <span class="day-date">Today 13</span>
@@ -136,11 +135,16 @@
                         <span class="high-temp">50&deg;</span>
                         <span class="low-temp">30&deg;</span>
                         <span class="wind">1</span>
-                    </div>
+                    </div> -->
                 </div>
                 <h3>Hour</h3>
-                <div class="forecast-hour scroll">
-                    <div class="hourly">
+                <div class="forecast-hour forecast-scroll">
+                    <div class="forecast-legend">
+                        <p>Time</p>
+                        <p>Sky</p>
+                        <p>Wind[MPH]</p>
+                    </div>
+                    <!-- <div class="hourly">
                         <span class="hour">12A</span>
                         <figure class="icon-holder">
                             <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
@@ -307,11 +311,11 @@
                             <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
                         </figure>
                         <span class="wind">1</span>
-                    </div>
+                    </div> -->
                 </div>
-                <h3>Summary</h3>
+                <!-- <h3>Summary</h3>
                 <div class="forecast-summary">
-                    <!-- <div class="day-summary">
+                    <div class="day-summary">
                         <span class="day-date">Sunday 14</span>
                         <figure class="icon-holder">
                             <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
@@ -324,23 +328,21 @@
                             <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
                         </figure>
                         <span class="daily-data-summary">Snow and windy starting in the afternoon.</span>
-                    </div> -->
-                </div>
+                    </div>
+                </div> -->
             </div>
-            <div class="details section-secondary">
+            <div class="details-summary section-secondary">
                 <h2>Today's Details</h2>
                 <div class="day-details">
-                    <p>Today's Rain Accumulation:</p><span class="precip-accumulation">0.9"</span>
+                    <p>Rain Accumulation:</p><span class="precip-accumulation">0.9"</span>
                     <p>Humidity:</p><span class="humidity">65%</span>
                     <p>Dew Point:</p><span class="dew-point">34&deg;</span>
                     <p>Visibility:</p><span class="visibility">10 mi</span>
                     <p>Pressure:</p><span class="pressure">30.27"</span>
                 </div>
             </div>
-
-            <div class="weather-week section-secondary"></div>
         </section>
-        <footer id="footer" class="footer">
+        <footer id="footer" class="footer section">
             <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a></p>
         </footer>
     </div>

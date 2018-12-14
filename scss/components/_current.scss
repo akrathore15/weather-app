@@ -1,0 +1,44 @@
+.current-weather {
+    margin: 1rem auto;
+    width: 30%;
+    padding: 2.25rem 1.5rem;
+    @include flexbox($wrap: wrap, $justify: space-evenly);
+    border: .25rem solid grey;
+    border-radius: $border-round;
+}
+.temp-current {
+    font-size: 2rem;
+    font-weight: bold;
+    width: 100%;
+    margin: .5rem 0;
+}
+.temp-high {
+    border-right: 1px solid grey;
+    padding-right: .75rem;
+}
+.current-details {
+    @include flexbox($justify: space-around, $align-items: center);
+}
+.current-summary {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.current-extras {
+    border-top: 1px solid grey;
+    padding: 1rem;
+    @include flexbox($justify: space-around);
+}
+.precip-container,
+.wind-container {
+    width: 50%;
+}
+.precip-container {
+    border-right: 1px solid grey;
+}
+
+.current-icon,
+.weather-icon {
+    width: auto;
+    height: 4rem;
+}
