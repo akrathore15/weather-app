@@ -150,7 +150,7 @@ p {
 
 .day {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 25%;
   flex: 0 0 auto;
@@ -176,6 +176,9 @@ p {
   flex-direction: column; }
 
 .hourly {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 0 .5rem; }
 
 .forecast-legend {
@@ -184,7 +187,8 @@ p {
   .forecast-legend p:not(:last-of-type) {
     border-bottom: 1px solid grey;
     margin: .3rem;
-    text-align: left; }
+    text-align: left;
+    padding-bottom: .5rem; }
 
 .footer {
   margin: 2rem auto; }

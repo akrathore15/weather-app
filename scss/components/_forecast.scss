@@ -11,9 +11,11 @@
     width: auto;
     height: 2rem;
 }
+// Icon made by [https://www.flaticon.com/authors/iconixar] from www.flaticon.com
+// E.g.: Icon made by iconixar from www.flaticon.com
 
 .day {
-    @include flexbox($justify: space-between, $wrap: wrap);
+    @include flexbox($justify: space-around, $wrap: wrap);
     width: 25%;
     flex: 0 0 auto;
     padding: 0 .5rem;
@@ -40,6 +42,7 @@ margin: .25rem 0;
     flex-direction: column;
 }
 .hourly {
+    @include flexbox($direction: column, $justify: space-around);
     padding: 0 .5rem;
 }
 .forecast-legend {
@@ -49,5 +52,6 @@ margin: .25rem 0;
         border-bottom: 1px solid grey;
         margin: .3rem;
         text-align: left;
+        padding-bottom: .5rem;
     }
 }

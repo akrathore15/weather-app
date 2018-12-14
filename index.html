@@ -18,6 +18,10 @@
                 <li><a href="">Contact</a></li>
             </ul>
         </nav> -->
+        <form>
+            <input type="text" placeholder="Zip code!" id="zip" class="zip"/>
+            <button type="submit" id="button-submit" class="button-submit">Weather Me!</button>
+        </form>
         <section id="main" class="main section">
             <div class="current section-secondary">
                 <h2 class="current-location">Charlottesville, VA, USA</h2>
@@ -48,6 +52,14 @@
                 <h2>Forecast</h2>
                 <h3>Day</h3>
                 <div class="forecast-day forecast-scroll">
+                    <div class="forecast-legend">
+                        <p>Precip %</p>
+                        <p>Accum</p>
+                        <p>Day/Date</p>
+                        <p>Sky</p>
+                        <p>High/Low</p>
+                        <p>Wind[MPH]</p>
+                    </div>
                     <!-- <div class="today day">
                         <span class="precip">10%</span>
                         <span class="precip-intensity-max">0"</span>
@@ -346,6 +358,10 @@
             <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a></p>
         </footer>
     </div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 <script src="scripts.js"></script>
 </body>

@@ -115,19 +115,18 @@ let day = "";
                     <figure class="icon-holder">
                         <img src="images/cloud.png" class="weather-icon" alt="kyle"/>
                     </figure>
-                    <span class="high-temp">50&deg;</span>
-                    <span class="low-temp">30&deg;</span>
+                    <span class="temp-high-low">50&deg; | 30&deg;</span>
                     <span class="wind">1</span>
                 </div>`
     }
-forecastDay.innerHTML = day;
+forecastDay.innerHTML += day;
 
 const forecastHour = document.querySelector(".forecast-hour");
 let hour = "";
 
-    for (let i = 1; i <= 24; i +=1) {
+    for (let i = 1; i <= 12; i +=1) {
         hour += `<div class="hourly">
-                    <span class="hour">${i}</span>
+                    <span class="hour">${i}AM</span>
                     <figure class="icon-holder">
                         <img src="images/cloud.png" class="weather-icon" alt="kyle"/>
                     </figure>
@@ -135,3 +134,37 @@ let hour = "";
                  </div>`
     }
 forecastHour.innerHTML += hour;
+
+
+
+const weatherLocator = document.querySelector(".button-submit");
+console.log(weatherLocator);
+const zipInput = document.querySelector(".zip");
+function isValidUSZip(sZip) {
+   return /^\d{5}(-\d{4})?$/.test(sZip);
+}
+weatherLocator.addEventListener("click", (e) => {
+    e.preventDefault();
+    var lonlat = "";
+    if (isValidUSZip(zipInput.value) === true) {
+        console.log("works");
+
+        function lonlat(zipInput) {
+         	if (event.keyCode === 13 && input.value.length === 5) {
+         		var zipCode = zipInput.value;
+
+         		var xhr = $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + zipCode + '&key=AIzaSyDVPLLlJAQ679Frd0gu11khJ9mW02wsvWQ');
+
+         		xhr.done(function(data) {
+         			lonlat.innerHTML = 'Latitude = ' + data.results[0].geometry.location.lat + ' ' + '<br>Longitude = ' + data.results[0].geometry.location.lng;
+         	      });
+ 	          }
+          }
+
+
+
+
+    } else {
+        alert("Please enter a valid 5-digit US zip code")
+    }
+});
