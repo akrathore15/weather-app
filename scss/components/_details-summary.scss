@@ -1,0 +1,19 @@
+.day-details {
+    margin: 0 auto;
+    padding: 1rem;;
+    @include flexbox($direction: row, $wrap: wrap);
+    p:not(:last-of-type),
+    span:not(:last-of-type) {
+        width: 50%;
+        border-bottom: 1px solid grey;
+        padding-bottom: .5rem;
+        margin-bottom: .5rem;
+    }
+    p {
+        text-align: left;
+    }
+    span {
+        text-align: right;
+    }
+
+}

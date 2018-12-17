@@ -18,40 +18,48 @@
                 <li><a href="">Contact</a></li>
             </ul>
         </nav> -->
-        <form>
+        <form class="location-form">
             <input type="text" placeholder="Zip code!" id="zip" class="zip"/>
             <button type="submit" id="button-submit" class="button-submit">Weather Me!</button>
         </form>
+        <h2 class="location-current">Charlottesville, VA, USA</h2>
         <section id="main" class="main section">
             <div class="current section-secondary">
-                <h2 class="current-location">Charlottesville, VA, USA</h2>
-                <div class="current-weather">
-                    <span class="temp-high"></span>
-                    <span class="temp-low"></span>
-                    <span class="temp-current"></span>
-                    <p>feels like <span class="temp-feels"></span></p>
-                </div>
-                <div class="current-details">
-                    <figure class="current-icon-holder">
-                        <canvas class="current-icon"></canvas>
-                    </figure>
-                    <span class="current-summary"></span>
-                </div>
-                <div class="current-extras">
-                    <div class="precip-container">
-                        <p>PRECIP</p>
-                        <span class="current-precip">10%</span>
+                <div class="current-weather-container">
+                    <div class="current-weather">
+                        <span class="temp-high-low">57 | 35</span>
+                        <span class="temp-current">45</span>
+                        <p>feels like <span class="temp-feels">45</span></p>
                     </div>
-                    <div class="wind-container">
-                        <p>WIND[MPH]</p>
-                        <span class="current-wind">1</span>
+                </div>
+                <div class="current-details-container">
+                    <div class="current-details">
+                        <figure class="current-icon-holder">
+                            <img src="images/cloud.png" alt="cloud" height="64" width="64"/>
+                            <!-- <canvas class="current-icon"></canvas> -->
+                        </figure>
+                        <span class="current-summary">Partly Cloudy</span>
+                    </div>
+                    <div class="current-extras">
+                        <div class="precip-container">
+                            <p>PRECIP</p>
+                            <span class="current-precip">10%</span>
+                        </div>
+                        <div class="wind-container">
+                            <p>WIND[MPH]</p>
+                            <span class="current-wind">1</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="forecast section-secondary">
                 <h2>Forecast</h2>
-                <h3>Day</h3>
-                <div class="forecast-day forecast-scroll">
+                <div class="forecast-switch">
+                    <button class="forecast-button">Day</button>
+                    <button class="forecast-button">Hour</button>
+                    <button class="forecast-button">Summary</button>
+                </div>
+                <div class="forecast-day">
                     <div class="forecast-legend">
                         <p>Precip %</p>
                         <p>Accum</p>
@@ -60,288 +68,282 @@
                         <p>High/Low</p>
                         <p>Wind[MPH]</p>
                     </div>
-                    <!-- <div class="today day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Today 13</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
+                    <div class="forecast-scroll">
+                        <div class="today day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Today 13</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="sunday day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Sunday 14</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="monday day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Monday 15</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="tuesday day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Tuesday 16</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="wednesday day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Wednesday 17</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="thursday day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Thursday 18</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="friday day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Friday 19</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="saturday day">
+                            <span class="precip">10%</span>
+                            <span class="precip-intensity-max">0"</span>
+                            <span class="day-date">Saturday 20</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="high-low-temp">50&deg;|30&deg;</span>
+                            <span class="wind">1</span>
+                        </div>
                     </div>
-                    <div class="sunday day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Sunday 14</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="monday day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Monday 15</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="tuesday day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Tuesday 16</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="wednesday day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Wednesday 17</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="thursday day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Thursday 18</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="friday day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Friday 19</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="saturday day">
-                        <span class="precip">10%</span>
-                        <span class="precip-intensity-max">0"</span>
-                        <span class="day-date">Saturday 20</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="high-temp">50&deg;</span>
-                        <span class="low-temp">30&deg;</span>
-                        <span class="wind">1</span>
-                    </div> -->
                 </div>
-                <h3>Hour</h3>
-                <div class="forecast-hour forecast-scroll">
+                <div class="forecast-hour">
                     <div class="forecast-legend">
                         <p>Time</p>
                         <p>Sky</p>
                         <p>Wind[MPH]</p>
                     </div>
-                    <!-- <div class="hourly">
-                        <span class="hour">12A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
+                    <div class="forecast-scroll">
+                        <div class="hourly">
+                            <span class="hour">12A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">1A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">2A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">3A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">4A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">5A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">6A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">7A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">8A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">9A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">10A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">11A</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">12P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">1P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">2P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">3P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">4P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">5P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">6P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">7P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">8P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">9P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">10P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
+                        <div class="hourly">
+                            <span class="hour">11P</span>
+                            <figure class="icon-holder">
+                                <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                            </figure>
+                            <span class="wind">1</span>
+                        </div>
                     </div>
-                    <div class="hourly">
-                        <span class="hour">1A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">2A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">3A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">4A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">5A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">6A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">7A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">8A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">9A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">10A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">11A</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">12P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">1P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">2P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">3P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">4P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">5P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">6P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">7P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">8P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">9P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">10P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div>
-                    <div class="hourly">
-                        <span class="hour">11P</span>
-                        <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
-                        </figure>
-                        <span class="wind">1</span>
-                    </div> -->
                 </div>
-                <!-- <h3>Summary</h3>
                 <div class="forecast-summary">
-                    <div class="day-summary">
+                    <div class="daytime-summary">
                         <span class="day-date">Sunday 14</span>
                         <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
+                            <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
                         </figure>
                         <span class="daily-data-summary">Snow and windy starting in the afternoon.</span>
                     </div>
                     <div class="evening-summary">
                         <span class="day-date">Sunday night</span>
                         <figure class="icon-holder">
-                            <img src="images/profile-img.jpg" class="weather-icon" alt="kyle"/>
+                            <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
                         </figure>
                         <span class="daily-data-summary">Snow and windy starting in the afternoon.</span>
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="details-summary section-secondary">
                 <h2>Today's Details</h2>
@@ -358,10 +360,12 @@
             <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a></p>
         </footer>
     </div>
-<script
+
+<!-- <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 <script src="scripts.js"></script>
 </body>

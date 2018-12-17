@@ -1,49 +1,17 @@
-.forecast-scroll {
-    @include flexbox($justify: space-between, $wrap: nowrap);
-    overflow-x: auto;
+.forecast-switch {
+    display: inline-block;
+    padding: .5rem;
+    margin: .5rem auto;
     border: 1px solid grey;
     border-radius: $border-default;
+}
+
+.forecast-day,
+.forecast-hour {
+    border: 1px solid grey;
     padding: .5rem;
-    margin: 0 auto;
-}
-
-.weather-icon {
-    width: auto;
-    height: 2rem;
-}
-// Icon made by [https://www.flaticon.com/authors/iconixar] from www.flaticon.com
-// E.g.: Icon made by iconixar from www.flaticon.com
-
-.day {
-    @include flexbox($justify: space-around, $wrap: wrap);
-    width: 25%;
-    flex: 0 0 auto;
-    padding: 0 .5rem;
-}
-.day .precip,
-.day .precip-intensity-max,
-.day .day-date,
-.day .icon-holder,
-.day .wind {
-width: 100%;
-margin: .25rem 0;
-
-}
-.forecast-day .temp-high {
-    border-right: 1px solid black;
-    padding-right: .25rem;
-}
-.forecast-day .temp-high,
-.forecast-day .temp-low {
-    width: 45%;
-}
-
-.forecast.day {
-    flex-direction: column;
-}
-.hourly {
-    @include flexbox($direction: column, $justify: space-around);
-    padding: 0 .5rem;
+    border-radius: $border-default;
+    @include flexbox();
 }
 .forecast-legend {
     border-right: 1px solid grey;
@@ -55,3 +23,35 @@ margin: .25rem 0;
         padding-bottom: .5rem;
     }
 }
+
+.day,
+.hourly,
+.summary {
+    @include flexbox($direction: column, $justify: space-around, $align-items: center);
+    margin: 0 1rem;
+    // align-self: start;
+}
+
+.forecast-scroll {
+    @include flexbox($justify: space-between);
+    overflow-x: auto;
+}
+
+.forecast-summary {
+    border: 1px solid grey;
+    padding: 1rem;
+    border-radius: $border-default;
+    @include flexbox($justify: space-around);
+    @include media("large") {
+        // @include flexbox();
+    }
+}
+
+
+.weather-icon {
+    width: auto;
+    height: 2rem;
+}
+
+// Icon made by [https://www.flaticon.com/authors/iconixar] from www.flaticon.com
+// E.g.: Icon made by iconixar from www.flaticon.com
