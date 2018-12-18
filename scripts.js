@@ -83,39 +83,17 @@ weatherLocator.addEventListener("click", (e) => {
                                 const tempCurrent = document.querySelector(".current-temp").innerHTML = `${tempNow}&deg;`;
                                 const feelsLike = document.querySelector(".temp-feels").innerHTML = `${Math.round(weatherCurrently.apparentTemperature)}&deg;`;
                                 const currentDetails = document.querySelector(".current-details");
-                                const currentIcon = document.createElement("canvas");
-                                currentIcon.className = "current-icon";
-                                currentIcon.id = `${weatherCurrently.icon}`;
-                                currentDetails.prepend(currentIcon);
+                                const currentIcon = document.querySelector("#current-icon");
                                 // const currentIcon = document.querySelector(".current-icon");
                                 // currentIcon.setAttribute("id", `${weatherCurrently.icon}`);
                                 const summary = document.querySelector(".current-summary").innerHTML = weatherCurrently.summary;
 
 
-                                let skycons = new Skycons({"color": "grey"});
-                                    if (currentIcon.id === "clear-day") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.CLEAR_DAY);
-                                    } else if (currentIcon.id === "partly-cloudy-day") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.PARTLY_CLOUDY_DAY);
-                                    } else if (currentIcon.id === "clear-night") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.CLEAR_NIGHT);
-                                    } else if (currentIcon.id === "partly-cloudy-night") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.PARTLY_CLOUDY_NIGHT);
-                                    } else if (currentIcon.id === "cloudy") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.CLOUDY);
-                                    } else if (currentIcon.id === "rain") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.RAIN);
-                                    } else if (currentIcon.id === "sleet") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.SLEET);
-                                    } else if (currentIcon.id === "snow") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.SNOW);
-                                    } else if (currentIcon.id === "wind") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.WIND);
-                                    } else if (currentIcon.id === "fog") {
-                                        skycons.set(`${weatherCurrently.icon}`, Skycons.FOG);
-                                    }
+                                const skycons = new Skycons({"color": "grey"});
+                                skycons.set("current-icon", weatherCurrently.icon);
                                 skycons.play();
-console.log(currentIcon);
+
+
                                 if (tempNow < 50) {
                                     currentWeather.style.borderColor = "#76BED0";
                                 } else if (tempNow > 50) {
@@ -137,20 +115,8 @@ console.log(currentIcon);
                                 forecastDay.innerHTML += day;
                                 const forecastHour = document.querySelector(".forecast-hour .forecast-scroll");
 
-for (let i = 0; i < weatherDataHourly.length; i += 1) {
-        console.log(weatherDataHourly[i].windSpeed);
-}
-
-                                let hour = "";
-                                var start = moment().format("hA");
-                                    for (let i = 0; i <= weatherDataHourly.length; i += 1) {
-                                        hour += `<div class="hourly">
-                                                    <span class="hour">${moment().add(i, "h").format("hA")}</span>
-                                                        <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
-                                                    <span class="wind">${weatherDataHourly[0].windSpeed}</span>
-                                                </div>`
-                                    }
-                                forecastHour.innerHTML += hour;
+                                const hourBlock = createHourly(weatherDataHourly);
+                                forecastHour.innerHTML = hourBlock;
                             }
                         };
                         weatherRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long},${moment().unix()}`);
@@ -165,3 +131,17 @@ for (let i = 0; i < weatherDataHourly.length; i += 1) {
         alert("Please enter a valid 5-digit US zip code")
     }
 });
+
+function createHourly(weatherDataHourly) {
+    let hour = "";
+    var start = moment().format("hA");
+        for (let j = 0; j < weatherDataHourly.length; j += 1) {
+            hour += `<div class="hourly">
+                        <span class="hour">${moment().add(j, "h").format("hA")}</span>
+                            <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                        <span class="wind">${weatherDataHourly[j].windSpeed}</span>
+                    </div>`
+        }
+    return hour;
+
+}
