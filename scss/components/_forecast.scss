@@ -1,9 +1,12 @@
 .forecast-switch {
-    display: inline-block;
+    @include flexbox($justify: space-around);
     padding: .5rem;
     margin: .5rem auto;
     border: 1px solid grey;
     border-radius: $border-default;
+}
+.forecast-button {
+    padding: 0 1rem;
 }
 
 .forecast-day,
@@ -53,5 +56,9 @@
     height: 2rem;
 }
 
+// .forecast-hour,
+// .forecast-summary {
+//     display: none;
+// }
 // Icon made by [https://www.flaticon.com/authors/iconixar] from www.flaticon.com
 // E.g.: Icon made by iconixar from www.flaticon.com

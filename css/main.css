@@ -136,7 +136,7 @@ p {
   height: 12rem;
   margin: 1rem auto; }
 
-.temp-current {
+.current-temp {
   font-size: 3rem;
   font-weight: bold;
   width: 100%; }
@@ -169,11 +169,15 @@ p {
   height: 4rem; }
 
 .forecast-switch {
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
   padding: .5rem;
   margin: .5rem auto;
   border: 1px solid grey;
   border-radius: 0.5rem; }
+
+.forecast-button {
+  padding: 0 1rem; }
 
 .forecast-day,
 .forecast-hour {

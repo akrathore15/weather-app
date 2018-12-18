@@ -22,22 +22,20 @@
             <input type="text" placeholder="Zip code!" id="zip" class="zip"/>
             <button type="submit" id="button-submit" class="button-submit">Weather Me!</button>
         </form>
-        <h2 class="location-current">Charlottesville, VA, USA</h2>
+        <h2 class="location-current"></h2>
         <section id="main" class="main section">
             <div class="current section-secondary">
                 <div class="current-weather-container">
                     <div class="current-weather">
-                        <span class="temp-high-low">57 | 35</span>
-                        <span class="temp-current">45</span>
+                        <span class="current-high-low">57 | 35</span>
+                        <span class="current-temp">45</span>
                         <p>feels like <span class="temp-feels">45</span></p>
                     </div>
                 </div>
                 <div class="current-details-container">
                     <div class="current-details">
-                        <figure class="current-icon-holder">
-                            <img src="images/cloud.png" alt="cloud" height="64" width="64"/>
-                            <!-- <canvas class="current-icon"></canvas> -->
-                        </figure>
+                        <!-- <img src="images/cloud.png" alt="cloud" height="64" width="64"/> -->
+                        <!-- <canvas class="current-icon"></canvas> -->
                         <span class="current-summary">Partly Cloudy</span>
                     </div>
                     <div class="current-extras">
@@ -55,9 +53,9 @@
             <div class="forecast section-secondary">
                 <h2>Forecast</h2>
                 <div class="forecast-switch">
-                    <button class="forecast-button">Day</button>
-                    <button class="forecast-button">Hour</button>
-                    <button class="forecast-button">Summary</button>
+                    <h3><a href="" class="forecast-button day-switch">Day</a></h3>
+                    <h3><a href="" class="forecast-button hour-switch">Hour</a></h3>
+                    <h3><a href="" class="forecast-button summary-switch">Summary</a></h3>
                 </div>
                 <div class="forecast-day">
                     <div class="forecast-legend">
@@ -69,7 +67,7 @@
                         <p>Wind[MPH]</p>
                     </div>
                     <div class="forecast-scroll">
-                        <div class="today day">
+                        <!-- <div class="today day">
                             <span class="precip">10%</span>
                             <span class="precip-intensity-max">0"</span>
                             <span class="day-date">Today 13</span>
@@ -148,7 +146,7 @@
                             </figure>
                             <span class="high-low-temp">50&deg;|30&deg;</span>
                             <span class="wind">1</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="forecast-hour">
@@ -158,7 +156,7 @@
                         <p>Wind[MPH]</p>
                     </div>
                     <div class="forecast-scroll">
-                        <div class="hourly">
+                        <!-- <div class="hourly">
                             <span class="hour">12A</span>
                             <figure class="icon-holder">
                                 <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
@@ -325,7 +323,7 @@
                                 <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
                             </figure>
                             <span class="wind">1</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="forecast-summary">
