@@ -163,8 +163,7 @@ p {
 .precip-container {
   border-right: 1px solid grey; }
 
-.current-icon,
-.weather-icon {
+.current-icon {
   width: auto;
   height: 4rem; }
 
@@ -216,25 +215,39 @@ p {
   display: flex;
   justify-content: space-around; }
 
+.daytime-summary,
+.evening-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .daytime-summary .weather-icon,
+  .evening-summary .weather-icon {
+    width: 2rem;
+    height: 2rem; }
+
 .weather-icon {
   width: auto;
   height: 2rem; }
+
+.forecast-hour {
+  display: none; }
 
 .day-details {
   margin: 0 auto;
   padding: 1rem;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap; }
+  .day-details p {
+    text-align: left; }
+  .day-details span {
+    text-align: right; }
   .day-details p:not(:last-of-type),
   .day-details span:not(:last-of-type) {
     width: 50%;
     border-bottom: 1px solid grey;
     padding-bottom: .5rem;
     margin-bottom: .5rem; }
-  .day-details p {
-    text-align: left; }
-  .day-details span {
-    text-align: right; }
 
 /*# sourceMappingURL=main.css.map */

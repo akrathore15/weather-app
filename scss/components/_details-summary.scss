@@ -1,7 +1,13 @@
 .day-details {
     margin: 0 auto;
     padding: 1rem;;
-    @include flexbox($direction: row, $wrap: wrap);
+    @include flexbox($direction: row,$justify: space-between, $wrap: wrap);
+    p {
+        text-align: left;
+    }
+    span {
+        text-align: right;
+    }
     p:not(:last-of-type),
     span:not(:last-of-type) {
         width: 50%;
@@ -9,11 +15,6 @@
         padding-bottom: .5rem;
         margin-bottom: .5rem;
     }
-    p {
-        text-align: left;
-    }
-    span {
-        text-align: right;
-    }
+
 
 }

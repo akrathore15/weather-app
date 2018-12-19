@@ -49,16 +49,22 @@
         // @include flexbox();
     }
 }
-
+.daytime-summary,
+.evening-summary {
+    @include flexbox($direction: column, $align-items: center);
+    .weather-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+}
 
 .weather-icon {
     width: auto;
     height: 2rem;
 }
 
-// .forecast-hour,
-// .forecast-summary {
-//     display: none;
-// }
+.forecast-hour {
+    display: none;
+}
 // Icon made by [https://www.flaticon.com/authors/iconixar] from www.flaticon.com
 // E.g.: Icon made by iconixar from www.flaticon.com

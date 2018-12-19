@@ -1,31 +1,5 @@
-// let forecastSwitch = document.querySelector(".forecast-switch");
-// let forecastDay = document.querySelector(".forecast-day");
-// let forecastHour = document.querySelector(".forecast-hour");
-// let forecastSummary = document.querySelector(".forecast-summary");
-// let daySwitch = document.querySelector(".day-switch");
-// let hourSwitch = document.querySelector(".hour-switch");
-// let summarySwitch = document.querySelector(".summary-switch");
-// console.log(forecastDay, forecastHour, forecastSummary);
-// forecastSwitch.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     if (e.target === hourSwitch) {
-//         forecastDay.style.display = "none";
-//         forecastHour.style.display = "flex";
-//         forecastSummary.style.display = "none";
-//     } else if (e.target === summarySwitch) {
-//         forecastDay.style.display = "none";
-//         forecastHour.style.display = "none";
-//         forecastSummary.style.display = "flex";
-//     } else if (e.target === daySwitch) {
-//         forecastDay.style.display = "flex";
-//         forecastHour.style.display = "none";
-//         forecastSummary.style.display = "none";
-//     }
-// });
-
-
 //cors-anywhere plugin to get around dark sky's public access key
-(function() {
+function byPass() {
     var cors_api_host = 'cors-anywhere.herokuapp.com';
     var cors_api_url = 'https://' + cors_api_host + '/';
     var slice = [].slice;
@@ -40,16 +14,16 @@
         }
         return open.apply(this, args);
     };
-})();
-// xhr.open("GET", "https://cors-escape.herokuapp.com/https://maximum.blog/@shalvah/posts");
+}
+byPass();
 
 function isValidUSZip(sZip) {
    return /^\d{5}(-\d{4})?$/.test(sZip);
 }
 
-var lat ="";
-var long ="";
-let currentLocation = document.querySelector(".location-current");
+let lat ="";
+let long ="";
+const currentLocation = document.querySelector(".location-current");
 const zipInput = document.querySelector(".zip");
 const weatherLocator = document.querySelector(".button-submit");
 
@@ -68,59 +42,78 @@ weatherLocator.addEventListener("click", (e) => {
                 currentLocation.innerHTML = `${locationData.placeName}, ${locationData.adminCode1}, ${locationData.countryCode}`;
                 console.log(lat, long);
                         // api call to dark sky's database
-                        const weatherRequest = new XMLHttpRequest();
-                        weatherRequest.onreadystatechange = function () {
-                            if (weatherRequest.readyState === 4 && weatherRequest.status === 200) {
-                                const weatherResponse = JSON.parse(weatherRequest.responseText);
-                                const weatherData = weatherResponse;
-                                console.log(weatherData);
-                                const weatherCurrently = weatherData.currently;
-                                const weatherDataToday = weatherData.daily.data[0];
-                                const weatherDataHourly = weatherData.hourly.data;
-                                const currentWeather = document.querySelector(".current-weather");
-                                const currentTempHighLow = document.querySelector(".current-high-low").innerHTML = `${Math.round(weatherDataToday.temperatureHigh)}&deg; | ${Math.round(weatherDataToday.temperatureLow)}&deg;`;
-                                const tempNow = Math.round(weatherCurrently.temperature)
-                                const tempCurrent = document.querySelector(".current-temp").innerHTML = `${tempNow}&deg;`;
-                                const feelsLike = document.querySelector(".temp-feels").innerHTML = `${Math.round(weatherCurrently.apparentTemperature)}&deg;`;
-                                const currentDetails = document.querySelector(".current-details");
-                                const currentIcon = document.querySelector("#current-icon");
-                                // const currentIcon = document.querySelector(".current-icon");
-                                // currentIcon.setAttribute("id", `${weatherCurrently.icon}`);
-                                const summary = document.querySelector(".current-summary").innerHTML = weatherCurrently.summary;
+                        const weatherDayRequest = new XMLHttpRequest();
+                        weatherDayRequest.onreadystatechange = function () {
+                            if (weatherDayRequest.readyState === 4 && weatherDayRequest.status === 200) {
+                                const weatherDayResponse = JSON.parse(weatherDayRequest.responseText);
+                                const weatherDayData = weatherDayResponse;
+                                console.log(weatherDayData);
+                                const weatherCurrently = weatherDayData.currently;
+                                const weatherDataToday = weatherDayData.daily.data[0];
 
+                                //calling funciton to create current weather section
+                                const current = document.querySelector(".current");
+                                const now = createCurrent(weatherCurrently, weatherDataToday);
+                                current.innerHTML = now;
 
+                                //calling funciton to create daily details section
+                                const dayDetails = document.querySelector(".day-details");
+                                const details = createDetails(weatherDataToday);
+                                dayDetails.innerHTML = details;
+
+                                //input skycons
                                 const skycons = new Skycons({"color": "grey"});
                                 skycons.set("current-icon", weatherCurrently.icon);
                                 skycons.play();
 
-
-                                if (tempNow < 50) {
-                                    currentWeather.style.borderColor = "#76BED0";
-                                } else if (tempNow > 50) {
-                                    currentWeather.style.borderColor = "#F55D3E";
+                                //change current info border color depending on temperature
+                                const currentWeather = document.querySelector(".current-weather");
+                                const tempNow = weatherCurrently.temperature;
+                                if (tempNow <= 12.5) {
+                                    currentWeather.style.borderColor = "#0500ff";
+                                } else if (tempNow <= 25) {
+                                    currentWeather.style.borderColor = "#0012ff";
+                                } else if (tempNow <= 37.5) {
+                                    currentWeather.style.borderColor = "#0074ff";
+                                } else if (tempNow <= 50) {
+                                    currentWeather.style.borderColor = "#00d4ff";
+                                } else if (tempNow <= 62.5) {
+                                    currentWeather.style.borderColor = "#00ff5c";
+                                } else if (tempNow <= 75) {
+                                    currentWeather.style.borderColor = "#8aff00";
+                                } else if (tempNow <= 87.5) {
+                                    currentWeather.style.borderColor = "#FFdc00";
+                                } else if (tempNow <= 100) {
+                                    currentWeather.style.borderColor = "#FFa000";
                                 }
 
-                                const forecastDay = document.querySelector(".forecast-day .forecast-scroll");
-                                let day = "";
-                                    for (let i = 0; i < 7; i +=1) {
-                                        day += `<div class="today day">
-                                                    <span class="precip">${weatherCurrently.precipProbability}%</span>
-                                                    <span class="precip-intensity-max">${weatherDataToday.precipIntensityMax}"</span>
-                                                    <span class="day-date">${moment().add(i,"d").format("ddd D")}</span>
-                                                    <canvas id="${weatherCurrently.icon}" class="current-icon"></canvas>
-                                                    <span class="high-low-temp">${currentTempHighLow}</span>
-                                                    <span class="wind">${weatherDataToday.windSpeed}</span>
-                                                </div>`
-                                    }
-                                forecastDay.innerHTML += day;
-                                const forecastHour = document.querySelector(".forecast-hour .forecast-scroll");
-
-                                const hourBlock = createHourly(weatherDataHourly);
-                                forecastHour.innerHTML = hourBlock;
                             }
                         };
-                        weatherRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long},${moment().unix()}`);
-                        weatherRequest.send();
+                        weatherDayRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long},${moment().unix()}`);
+                        weatherDayRequest.send();
+
+
+                        const weatherWeekRequest = new XMLHttpRequest();
+                        weatherWeekRequest.onreadystatechange = function () {
+                            if (weatherWeekRequest.readyState === 4 && weatherWeekRequest.status === 200) {
+                                const weatherWeekResponse = JSON.parse(weatherWeekRequest.responseText);
+                                const weatherWeekData = weatherWeekResponse;
+                                const weatherWeek = weatherWeekData.daily.data;
+                                const weatherHourly = weatherWeekData.hourly.data;
+
+                                //calling funciton to create hourly section
+                                const forecastHour = document.querySelector(".forecast-hour .forecast-scroll");
+                                const hourBlock = createHourly(weatherHourly);
+                                forecastHour.innerHTML = hourBlock;
+
+                                //calling funciton to create weekly forecast section
+                                const forecastDay = document.querySelector(".forecast-day .forecast-scroll");
+                                const dayBlock = createWeek(weatherWeek);
+                                forecastDay.innerHTML = dayBlock;
+                            }
+                        };
+                        weatherWeekRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long}/`);
+                        weatherWeekRequest.send();
 
             }
         };
@@ -132,16 +125,95 @@ weatherLocator.addEventListener("click", (e) => {
     }
 });
 
-function createHourly(weatherDataHourly) {
+
+function createCurrent(weatherCurrently, weatherDataToday, weatherDataHourly) {
+    let current =  `<div class="current-weather-container">
+                        <div class="current-weather">
+                            <span class="current-high-low">${Math.round(weatherDataToday.temperatureHigh)}&deg;|${Math.round(weatherDataToday.temperatureLow)}&deg;</span>
+                            <span class="current-temp">${Math.round(weatherCurrently.temperature)}&deg;</span>
+                            <p>feels like <span class="temp-feels">${Math.round(weatherCurrently.apparentTemperature)}&deg;</span></p>
+                        </div>
+                    </div>
+                    <div class="current-details-container">
+                        <div class="current-details">
+                            <canvas id="current-icon" class="current-icon"></canvas>
+                            <span class="current-summary">${weatherCurrently.summary}</span>
+                        </div>
+                        <div class="current-extras">
+                            <div class="precip-container">
+                                <p>PRECIP</p>
+                                <span class="current-precip">${weatherCurrently.precipProbability}%</span>
+                            </div>
+                            <div class="wind-container">
+                                <p>WIND[MPH]</p>
+                                <span class="current-wind">${weatherCurrently.windSpeed}</span>
+                            </div>
+                        </div>
+                    </div>`;
+    return current;
+}
+
+function createDetails(weatherDataToday) {
+    const detail = `<p>Day/Date:</p><span class="day-date">${moment().format("dddd D")}</span>
+                    <p>Summary:</p><span class="day-summary">${weatherDataToday.summary}</span>
+                    <p>Rain Accumulation:</p><span class="precip-accumulation">${Math.round(weatherDataToday.precipIntensityMax) * 0.39370}"</span>
+                    <p>Humidity:</p><span class="humidity">${weatherDataToday.humidity}%</span>
+                    <p>Dew Point:</p><span class="dew-point">${weatherDataToday.dewPoint}&deg;</span>
+                    <p>Visibility:</p><span class="visibility">${weatherDataToday.visibility} mi</span>
+                    <p>Pressure:</p><span class="pressure">${weatherDataToday.pressure}</span>`;
+    return detail;
+}
+
+function createHourly(weatherHourly) {
     let hour = "";
     var start = moment().format("hA");
-        for (let j = 0; j < weatherDataHourly.length; j += 1) {
+        for (let i = 0; i < weatherHourly.length; i += 1) {
             hour += `<div class="hourly">
-                        <span class="hour">${moment().add(j, "h").format("hA")}</span>
-                            <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
-                        <span class="wind">${weatherDataHourly[j].windSpeed}</span>
-                    </div>`
+                        <span class="hour">${moment().add(i, "h").format("hA")}</span>
+                        <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                        <span class="wind">${weatherHourly[i].windSpeed}</span>
+                     </div>`
         }
     return hour;
-
 }
+
+function createWeek(weatherWeek) {
+    let day = "";
+        for (let i = 0; i < weatherWeek.length; i +=1) {
+            day += `<div class="today day">
+                        <span class="precip">${weatherWeek[i].precipProbability}%</span>
+                        <span class="precip-intensity-max">${Math.floor(weatherWeek[i].precipIntensityMax)}"</span>
+                        <span class="day-date">${moment().add(i,"d").format("dddd D")}</span>
+                        <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                        <span class="high-low-temp">${Math.round(weatherWeek[i].temperatureHigh)}|${Math.round(weatherWeek[i].temperatureLow)}</span>
+                        <span class="wind">${weatherWeek[i].windSpeed}</span>
+                    </div>`
+        }
+    return day;
+}
+
+
+
+
+
+
+
+
+
+
+let forecastSwitch = document.querySelector(".forecast-switch");
+let forecastDay = document.querySelector(".forecast-day");
+let forecastHour = document.querySelector(".forecast-hour");
+let daySwitch = document.querySelector(".day-switch");
+let hourSwitch = document.querySelector(".hour-switch");
+
+forecastSwitch.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target === hourSwitch) {
+        forecastDay.style.display = "none";
+        forecastHour.style.display = "flex";
+    }  else if (e.target === daySwitch) {
+        forecastDay.style.display = "flex";
+        forecastHour.style.display = "none";
+    }
+});
