@@ -17,15 +17,15 @@ function byPass() {
 }
 byPass();
 
+//verify 5-digit zip code
 function isValidUSZip(sZip) {
    return /^\d{5}(-\d{4})?$/.test(sZip);
 }
 
-let lat ="";
-let long ="";
 const currentLocation = document.querySelector(".location-current");
 const zipInput = document.querySelector(".zip");
 const weatherLocator = document.querySelector(".button-submit");
+const mainSection = document.querySelector(".main");
 
 weatherLocator.addEventListener("click", (e) => {
     e.preventDefault();
@@ -37,19 +37,18 @@ weatherLocator.addEventListener("click", (e) => {
                 const locationResponse = JSON.parse(locationRequest.responseText);
                 const locationData = locationResponse.postalCodes[0];
                 console.log(locationData);
-                lat = locationData.lat;
-                long = locationData.lng;
+                const lat = locationData.lat;
+                const long = locationData.lng;
                 currentLocation.innerHTML = `${locationData.placeName}, ${locationData.adminCode1}, ${locationData.countryCode}`;
-                console.log(lat, long);
                         // api call to dark sky's database
                         const weatherDayRequest = new XMLHttpRequest();
                         weatherDayRequest.onreadystatechange = function () {
                             if (weatherDayRequest.readyState === 4 && weatherDayRequest.status === 200) {
                                 const weatherDayResponse = JSON.parse(weatherDayRequest.responseText);
                                 const weatherDayData = weatherDayResponse;
-                                console.log(weatherDayData);
                                 const weatherCurrently = weatherDayData.currently;
                                 const weatherDataToday = weatherDayData.daily.data[0];
+                                console.log(weatherDayData);
 
                                 //calling funciton to create current weather section
                                 const current = document.querySelector(".current");
@@ -100,6 +99,9 @@ weatherLocator.addEventListener("click", (e) => {
                                 const weatherWeekData = weatherWeekResponse;
                                 const weatherWeek = weatherWeekData.daily.data;
                                 const weatherHourly = weatherWeekData.hourly.data;
+                                console.log(weatherWeekData);
+
+
 
                                 //calling funciton to create hourly section
                                 const forecastHour = document.querySelector(".forecast-hour .forecast-scroll");
@@ -110,11 +112,24 @@ weatherLocator.addEventListener("click", (e) => {
                                 const forecastDay = document.querySelector(".forecast-day .forecast-scroll");
                                 const dayBlock = createWeek(weatherWeek);
                                 forecastDay.innerHTML = dayBlock;
+
+                                const skyconsDay = new Skycons({"color": "grey"});
+                                const day = document.querySelectorAll(".today");
+                                console.log(day);
+                                for (let i = 0; i < weatherWeek.length; i += 1) {
+                                     let uniqueId = 'day-icon' + i;
+                                     let div = document.createElement("canvas");
+                                     div.setAttribute("id", `${uniqueId}`);
+                                     div.className = "day-icon";
+                                     day[i].prepend(div);
+                                     skyconsDay.add(uniqueId, weatherWeek[i].icon);
+                                     skyconsDay.play();
+                                   }
                             }
                         };
                         weatherWeekRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long}/`);
                         weatherWeekRequest.send();
-
+                mainSection.style.display = "block";
             }
         };
         locationRequest.open("GET",`http://api.geonames.org/postalCodeSearchJSON?postalcode=${zipInput.value}&username=pattonkb`);
@@ -166,19 +181,28 @@ function createDetails(weatherDataToday) {
 
 function createHourly(weatherHourly) {
     let hour = "";
-    var start = moment().format("hA");
-        for (let i = 0; i < weatherHourly.length; i += 1) {
-            hour += `<div class="hourly">
-                        <span class="hour">${moment().add(i, "h").format("hA")}</span>
-                        <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
-                        <span class="wind">${weatherHourly[i].windSpeed}</span>
-                     </div>`
-        }
+    const skyconsHourly = new Skycons({"color": "grey"});
+    for (let i = 0; i < weatherHourly.length; i += 1) {
+
+        let uniqueId = "hour-icon" + i;
+        hour += `<div class="hourly">
+                    <span class="hour">${moment().add(i, "h").format("hA")}</span>
+                    <span class="wind">${Math.round(weatherHourly[i].temperature)}&deg;</span>
+                    <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
+                    <canvas id="${uniqueId}" class="hour-icon"></canvas>
+                    <span class="wind">${weatherHourly[i].windSpeed}</span>
+                 </div>`;
+                 // console.log(uniqueId);
+                 // console.log(weatherHourly[i].icon);
+                 // skyconsHourly.set(uniqueId, weatherHourly[i].icon);
+                 // skyconsHourly.play();
+    }
     return hour;
 }
 
 function createWeek(weatherWeek) {
     let day = "";
+    const skyconsDay = new Skycons({"color": "grey"});
         for (let i = 0; i < weatherWeek.length; i +=1) {
             day += `<div class="today day">
                         <span class="precip">${weatherWeek[i].precipProbability}%</span>
@@ -187,7 +211,7 @@ function createWeek(weatherWeek) {
                         <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
                         <span class="high-low-temp">${Math.round(weatherWeek[i].temperatureHigh)}|${Math.round(weatherWeek[i].temperatureLow)}</span>
                         <span class="wind">${weatherWeek[i].windSpeed}</span>
-                    </div>`
+                    </div>`;
         }
     return day;
 }

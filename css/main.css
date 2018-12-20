@@ -97,6 +97,9 @@ p {
   border: 1px solid grey;
   border-radius: 0.5rem; }
 
+.main {
+  display: none; }
+
 .section {
   margin: 1rem 0; }
 
@@ -228,6 +231,11 @@ p {
 .weather-icon {
   width: auto;
   height: 2rem; }
+
+.day-icon,
+.hour-icon {
+  width: auto;
+  height: 1.5rem; }
 
 .forecast-hour {
   display: none; }
