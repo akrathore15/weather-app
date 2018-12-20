@@ -113,15 +113,18 @@ weatherLocator.addEventListener("click", (e) => {
                                 const dayBlock = createWeek(weatherWeek);
                                 forecastDay.innerHTML = dayBlock;
 
+                                //write function to set all skycons
                                 const skyconsDay = new Skycons({"color": "grey"});
                                 const day = document.querySelectorAll(".today");
+                                const highLowTemp = document.querySelectorAll(".high-low-temp");
+                                console.log(highLowTemp);
                                 console.log(day);
                                 for (let i = 0; i < weatherWeek.length; i += 1) {
                                      let uniqueId = 'day-icon' + i;
                                      let div = document.createElement("canvas");
                                      div.setAttribute("id", `${uniqueId}`);
                                      div.className = "day-icon";
-                                     day[i].prepend(div);
+                                     day[i].insertBefore(div, highLowTemp[i]);
                                      skyconsDay.add(uniqueId, weatherWeek[i].icon);
                                      skyconsDay.play();
                                    }
@@ -208,7 +211,6 @@ function createWeek(weatherWeek) {
                         <span class="precip">${weatherWeek[i].precipProbability}%</span>
                         <span class="precip-intensity-max">${Math.floor(weatherWeek[i].precipIntensityMax)}"</span>
                         <span class="day-date">${moment().add(i,"d").format("dddd D")}</span>
-                        <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
                         <span class="high-low-temp">${Math.round(weatherWeek[i].temperatureHigh)}|${Math.round(weatherWeek[i].temperatureLow)}</span>
                         <span class="wind">${weatherWeek[i].windSpeed}</span>
                     </div>`;
