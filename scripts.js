@@ -61,6 +61,9 @@ weatherLocator.addEventListener("click", (e) => {
                                 dayDetails.innerHTML = details;
 
                                 //input skycons
+                                // createSkycons("current", ".current-icon", weatherDataToday);
+                                //
+                                // // createSkycons();
                                 const skycons = new Skycons({"color": "grey"});
                                 skycons.set("current-icon", weatherCurrently.icon);
                                 skycons.play();
@@ -99,9 +102,7 @@ weatherLocator.addEventListener("click", (e) => {
                                 const weatherWeekData = weatherWeekResponse;
                                 const weatherWeek = weatherWeekData.daily.data;
                                 const weatherHourly = weatherWeekData.hourly.data;
-                                console.log(weatherWeekData);
-
-
+                                console.log(weatherWeek);
 
                                 //calling funciton to create hourly section
                                 const forecastHour = document.querySelector(".forecast-hour .forecast-scroll");
@@ -113,21 +114,10 @@ weatherLocator.addEventListener("click", (e) => {
                                 const dayBlock = createWeek(weatherWeek);
                                 forecastDay.innerHTML = dayBlock;
 
-                                //write function to set all skycons
-                                const skyconsDay = new Skycons({"color": "grey"});
-                                const day = document.querySelectorAll(".today");
-                                const highLowTemp = document.querySelectorAll(".high-low-temp");
-                                console.log(highLowTemp);
-                                console.log(day);
-                                for (let i = 0; i < weatherWeek.length; i += 1) {
-                                     let uniqueId = 'day-icon' + i;
-                                     let div = document.createElement("canvas");
-                                     div.setAttribute("id", `${uniqueId}`);
-                                     div.className = "day-icon";
-                                     day[i].insertBefore(div, highLowTemp[i]);
-                                     skyconsDay.add(uniqueId, weatherWeek[i].icon);
-                                     skyconsDay.play();
-                                   }
+
+                                createSkycons("day", ".day-icon", weatherWeek);
+                                createSkycons("hour", ".hour-icon", weatherHourly);
+
                             }
                         };
                         weatherWeekRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long}/`);
@@ -160,7 +150,7 @@ function createCurrent(weatherCurrently, weatherDataToday, weatherDataHourly) {
                         <div class="current-extras">
                             <div class="precip-container">
                                 <p>PRECIP</p>
-                                <span class="current-precip">${weatherCurrently.precipProbability}%</span>
+                                <span class="current-precip">${(weatherCurrently.precipProbability).toFixed(2)}%</span>
                             </div>
                             <div class="wind-container">
                                 <p>WIND[MPH]</p>
@@ -174,7 +164,7 @@ function createCurrent(weatherCurrently, weatherDataToday, weatherDataHourly) {
 function createDetails(weatherDataToday) {
     const detail = `<p>Day/Date:</p><span class="day-date">${moment().format("dddd D")}</span>
                     <p>Summary:</p><span class="day-summary">${weatherDataToday.summary}</span>
-                    <p>Rain Accumulation:</p><span class="precip-accumulation">${Math.round(weatherDataToday.precipIntensityMax) * 0.39370}"</span>
+                    <p>Rain Accumulation:</p><span class="precip-accumulation">${(weatherDataToday.precipIntensityMax * 0.39370).toFixed(2)}"</span>
                     <p>Humidity:</p><span class="humidity">${weatherDataToday.humidity}%</span>
                     <p>Dew Point:</p><span class="dew-point">${weatherDataToday.dewPoint}&deg;</span>
                     <p>Visibility:</p><span class="visibility">${weatherDataToday.visibility} mi</span>
@@ -184,21 +174,13 @@ function createDetails(weatherDataToday) {
 
 function createHourly(weatherHourly) {
     let hour = "";
-    const skyconsHourly = new Skycons({"color": "grey"});
     for (let i = 0; i < weatherHourly.length; i += 1) {
-
-        let uniqueId = "hour-icon" + i;
         hour += `<div class="hourly">
                     <span class="hour">${moment().add(i, "h").format("hA")}</span>
                     <span class="wind">${Math.round(weatherHourly[i].temperature)}&deg;</span>
-                    <img src="images/cloud.png" class="weather-icon" alt="cloud"/>
-                    <canvas id="${uniqueId}" class="hour-icon"></canvas>
+                    <canvas class="hour-icon"></canvas>
                     <span class="wind">${weatherHourly[i].windSpeed}</span>
                  </div>`;
-                 // console.log(uniqueId);
-                 // console.log(weatherHourly[i].icon);
-                 // skyconsHourly.set(uniqueId, weatherHourly[i].icon);
-                 // skyconsHourly.play();
     }
     return hour;
 }
@@ -209,8 +191,9 @@ function createWeek(weatherWeek) {
         for (let i = 0; i < weatherWeek.length; i +=1) {
             day += `<div class="today day">
                         <span class="precip">${weatherWeek[i].precipProbability}%</span>
-                        <span class="precip-intensity-max">${Math.floor(weatherWeek[i].precipIntensityMax)}"</span>
+                        <span class="precip-intensity-max">${(weatherWeek[i].precipIntensityMax).toFixed(2)}"</span>
                         <span class="day-date">${moment().add(i,"d").format("dddd D")}</span>
+                        <canvas class="day-icon"></canvas>
                         <span class="high-low-temp">${Math.round(weatherWeek[i].temperatureHigh)}|${Math.round(weatherWeek[i].temperatureLow)}</span>
                         <span class="wind">${weatherWeek[i].windSpeed}</span>
                     </div>`;
@@ -218,6 +201,17 @@ function createWeek(weatherWeek) {
     return day;
 }
 
+function createSkycons(type, canvas, weatherData) {
+    console.log(weatherData);
+    const skycons = new Skycons({"color": "grey"});
+    let canvases = document.querySelectorAll(canvas);
+    for (let i = 0; i < weatherData.length; i += 1) {
+        let uniqueId = `${type}weather-icon` + i;
+        canvases[i].setAttribute("id", `${uniqueId}`);
+        skycons.add(uniqueId, weatherData[i].icon);
+        skycons.play();
+    }
+ }
 
 
 

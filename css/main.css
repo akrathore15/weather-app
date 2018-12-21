@@ -204,7 +204,7 @@ p {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin: 0 1rem; }
+  margin: 0 1.5rem; }
 
 .forecast-scroll {
   display: flex;
@@ -227,10 +227,6 @@ p {
   .evening-summary .weather-icon {
     width: 2rem;
     height: 2rem; }
-
-.weather-icon {
-  width: auto;
-  height: 2rem; }
 
 .day-icon,
 .hour-icon {
