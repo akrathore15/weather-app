@@ -1,3 +1,6 @@
+const skycons = new Skycons({"color": "grey"});
+
+skycons.play();
 //cors-anywhere plugin to get around dark sky's public access key
 function byPass() {
     var cors_api_host = 'cors-anywhere.herokuapp.com';
@@ -60,10 +63,10 @@ weatherLocator.addEventListener("click", (e) => {
                                 const details = createDetails(weatherDataToday);
                                 dayDetails.innerHTML = details;
 
-                                //input skycons
+                                // input skycons
                                 // createSkycons("current", ".current-icon", weatherDataToday);
-                                //
-                                // // createSkycons();
+
+                                //current skycon;
                                 const skycons = new Skycons({"color": "grey"});
                                 skycons.set("current-icon", weatherCurrently.icon);
                                 skycons.play();
@@ -87,6 +90,8 @@ weatherLocator.addEventListener("click", (e) => {
                                     currentWeather.style.borderColor = "#FFdc00";
                                 } else if (tempNow <= 100) {
                                     currentWeather.style.borderColor = "#FFa000";
+                                } else {
+                                    currentWeather.style.borderColor = "grey";
                                 }
 
                             }
@@ -203,13 +208,12 @@ function createWeek(weatherWeek) {
 
 function createSkycons(type, canvas, weatherData) {
     console.log(weatherData);
-    const skycons = new Skycons({"color": "grey"});
     let canvases = document.querySelectorAll(canvas);
     for (let i = 0; i < weatherData.length; i += 1) {
         let uniqueId = `${type}weather-icon` + i;
         canvases[i].setAttribute("id", `${uniqueId}`);
         skycons.add(uniqueId, weatherData[i].icon);
-        skycons.play();
+
     }
  }
 
