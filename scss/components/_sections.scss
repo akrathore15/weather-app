@@ -1,11 +1,31 @@
 .main {
     display: none;
+    // @include media("large") {
+    //     display: flex;
+    //     flex-wrap: wrap;
+    // }
 }
 
 .section {
     margin: 1rem 0;
 }
-
+// 
+// .forecast {
+//     @include media("large") {
+//         width: 100%;
+//         order: 1;
+//     }
+// }
 .section-secondary {
     margin: 1.5rem 0;
 }
+
+// .current,
+// .details-summary {
+//     @include media("large") {
+//         flex-direction: column;
+//         width: 50%;
+//         align-self: stretch;
+//         // margin: 0;
+//     }
+// }

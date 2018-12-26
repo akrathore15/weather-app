@@ -128,6 +128,8 @@ weatherLocator.addEventListener("click", (e) => {
                         weatherWeekRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long}/`);
                         weatherWeekRequest.send();
                 mainSection.style.display = "block";
+                // mainSection.style.flexWrap = "wrap";
+
             }
         };
         locationRequest.open("GET",`http://api.geonames.org/postalCodeSearchJSON?postalcode=${zipInput.value}&username=pattonkb`);
@@ -171,9 +173,7 @@ function createDetails(weatherDataToday) {
                     <p>Summary:</p><span class="day-summary">${weatherDataToday.summary}</span>
                     <p>Rain Accumulation:</p><span class="precip-accumulation">${(weatherDataToday.precipIntensityMax * 0.39370).toFixed(2)}"</span>
                     <p>Humidity:</p><span class="humidity">${weatherDataToday.humidity}%</span>
-                    <p>Dew Point:</p><span class="dew-point">${weatherDataToday.dewPoint}&deg;</span>
-                    <p>Visibility:</p><span class="visibility">${weatherDataToday.visibility} mi</span>
-                    <p>Pressure:</p><span class="pressure">${weatherDataToday.pressure}</span>`;
+                    <p>Visibility:</p><span class="visibility">${weatherDataToday.visibility} mi</span>`;
     return detail;
 }
 

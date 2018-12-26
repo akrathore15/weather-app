@@ -14,7 +14,7 @@
     border: 1px solid grey;
     padding: .5rem;
     border-radius: $border-default;
-    @include flexbox();
+    @include flexbox($justify: space-between);
 }
 .forecast-legend {
     border-right: 1px solid grey;
@@ -31,20 +31,21 @@
 .hourly,
 .summary {
     @include flexbox($direction: column, $justify: space-around, $align-items: center);
-    margin: 0 1.5rem;
+    margin: 0 1rem;
     // align-self: start;
 }
 
 .forecast-scroll {
     @include flexbox($justify: space-between);
     overflow-x: auto;
+    flex-grow: 1;
 }
 
 .forecast-summary {
     border: 1px solid grey;
     padding: 1rem;
     border-radius: $border-default;
-    @include flexbox($justify: space-around);
+    @include flexbox();
     @include media("large") {
         // @include flexbox();
     }
