@@ -3,23 +3,20 @@
         @include flexbox($justify: space-around, $align-items: center);
     }
 }
-.current-weather-container {
-    @include media("medium") {
-        @include flexbox();
-        width: 50%;
-    }
-    @include media("large") {
-        width: 30%;
-    }
-}
+
 .current-details-container {
+    margin: 0 1rem;
     @include media("medium") {
-        @include flexbox($direction: column);
+        // @include flexbox($direction: column);
         width: 50%;
     }
     @include media("large") {
         width: 70%;
     }
+}
+
+.current-details {
+    @include flexbox($justify: space-around, $align-items: center);
 }
 
 .current-weather {
@@ -37,9 +34,6 @@
     width: 100%;
 }
 
-.current-details {
-    @include flexbox($justify: space-around, $align-items: center);
-}
 .current-summary {
     font-size: 1.5rem;
     font-weight: bold;
@@ -47,14 +41,16 @@
 
 .current-extras {
     border-top: 1px solid grey;
-    margin-top: .5rem;
+    margin-top: 1rem;
     padding: 1rem;
     @include flexbox($justify: space-around);
 }
+
 .precip-container,
 .wind-container {
     width: 50%;
 }
+
 .precip-container {
     border-right: 1px solid grey;
 }

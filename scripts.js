@@ -29,6 +29,7 @@ const currentLocation = document.querySelector(".location-current");
 const zipInput = document.querySelector(".zip");
 const weatherLocator = document.querySelector(".button-submit");
 const mainSection = document.querySelector(".main");
+const footer = document.querySelector(".footer");
 
 weatherLocator.addEventListener("click", (e) => {
     e.preventDefault();
@@ -127,8 +128,10 @@ weatherLocator.addEventListener("click", (e) => {
                         };
                         weatherWeekRequest.open("GET", `https://api.darksky.net/forecast/db27ab4384ceebe7e5e55d9208d5d871/${lat},${long}/`);
                         weatherWeekRequest.send();
-                mainSection.style.display = "block";
+                mainSection.style.visibility = "visible";
+                footer.style.display = "block";
                 // mainSection.style.flexWrap = "wrap";
+                // mainSection.classList.add("show");
 
             }
         };
@@ -220,24 +223,61 @@ function createSkycons(type, canvas, weatherData) {
 
 
 
+ let forecastSwitch = document.querySelector(".forecast-switch");
+ const dayButton = document.querySelector(".button-daily");
+ const hourButton = document.querySelector(".button-hourly");
+ let forecastDay = document.querySelector(".forecast-day");
+ let forecastHour = document.querySelector(".forecast-hour");
 
 
+ const forecasts = [
+     {
+         forecast: "daily",
+         forecastButton: dayButton,
+         forecastChart: forecastDay,
+         isDefault: true,
+     },
+     {
+         forecast: "hourly",
+         forecastButton: hourButton,
+         forecastChart: forecastHour,
+         isDefault: false,
+     }
+ ];
+
+ window.addEventListener("load", () => {
+     for (let i = 0; i < forecasts.length; i += 1) {
+         if (forecasts[i].isDefault) {
+             forecasts[i].forecastChart.style.display = "flex";
+             forecasts[i].forecastButton.classList.add("default-selected");
+         } else {
+             forecasts[i].forecastChart.style.display = "none";
+         }
+     }
+ });
+
+ forecastSwitch.addEventListener("click", (e) => {
+     for (let i = 0; i < forecasts.length; i += 1) {
+         if (e.target === forecasts[i].forecastButton) {
+             forecasts[i].forecastChart.style.display = "flex";
+             forecasts[i].forecastButton.classList.add("default-selected");
+         } else {
+             forecasts[i].forecastChart.style.display = "none";
+             forecasts[i].forecastButton.classList.remove("default-selected");
+         }
+     }
+ });
 
 
-
-let forecastSwitch = document.querySelector(".forecast-switch");
-let forecastDay = document.querySelector(".forecast-day");
-let forecastHour = document.querySelector(".forecast-hour");
-let daySwitch = document.querySelector(".day-switch");
-let hourSwitch = document.querySelector(".hour-switch");
-
-forecastSwitch.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (e.target === hourSwitch) {
-        forecastDay.style.display = "none";
-        forecastHour.style.display = "flex";
-    }  else if (e.target === daySwitch) {
-        forecastDay.style.display = "flex";
-        forecastHour.style.display = "none";
-    }
-});
+// forecastSwitch.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     if (e.target === hourButton) {
+//         forecastDay.style.display = "none";
+//         hourButton.style.backgroundColor = "red";
+//         forecastHour.style.display = "flex";
+//     }  else if (e.target === dayButton) {
+//         forecastDay.style.display = "flex";
+//         dayButton.style.backgroundColor = "red";
+//         forecastHour.style.display = "none";
+//     }
+// });

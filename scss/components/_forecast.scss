@@ -1,12 +1,26 @@
 .forecast-switch {
-    @include flexbox($justify: space-around);
-    padding: .5rem;
+    @include flexbox();
     margin: .5rem auto;
-    border: 1px solid grey;
-    border-radius: $border-default;
+    @include media("medium") {
+        justify-content: center;
+    }
 }
-.forecast-button {
-    padding: 0 1rem;
+
+.default-selected {
+  color: white;
+  background-color: grey;
+}
+
+.button-daily,
+.button-hourly {
+    font-family: $font-family--primary;
+    border-radius: $border-default;
+    margin: .5rem;
+    width: 50%;
+    @include media("medium") {
+        align-self: center;
+        width: 10%;
+    }
 }
 
 .forecast-day,
@@ -16,6 +30,7 @@
     border-radius: $border-default;
     @include flexbox($justify: space-between);
 }
+
 .forecast-legend {
     border-right: 1px solid grey;
     padding-right: .5rem;
@@ -66,7 +81,7 @@
 }
 
 .forecast-hour {
-    display: none;
+    // display: none;
 }
 // Icon made by [https://www.flaticon.com/authors/iconixar] from www.flaticon.com
 // E.g.: Icon made by iconixar from www.flaticon.com
