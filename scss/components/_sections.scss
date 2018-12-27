@@ -1,18 +1,10 @@
 .main {
-    // display: none;
-    // width: 100%;
     visibility: hidden;
     @include media("large") {
         display: flex;
         flex-wrap: wrap;
     }
 }
-// .show {
-//     @include media("large") {
-//         display: flex;
-//         flex-wrap: wrap;
-//     }
-// }
 
 .section {
     margin: 1rem 0;
@@ -34,4 +26,9 @@
         width: 50%;
         align-self: stretch;
     }
+}
+
+.dark-mode {
+    color: #5CE0E0;
+    background-color: #343F45;
 }

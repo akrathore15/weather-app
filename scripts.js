@@ -64,10 +64,8 @@ weatherLocator.addEventListener("click", (e) => {
                                 const details = createDetails(weatherDataToday);
                                 dayDetails.innerHTML = details;
 
-                                // input skycons
-                                // createSkycons("current", ".current-icon", weatherDataToday);
-
-                                //current skycon;
+                                // input skycons type, canvas, weatherData
+                                // createSkycons("current", "current-icon", weatherCurrently )
                                 const skycons = new Skycons({"color": "grey"});
                                 skycons.set("current-icon", weatherCurrently.icon);
                                 skycons.play();
@@ -130,9 +128,6 @@ weatherLocator.addEventListener("click", (e) => {
                         weatherWeekRequest.send();
                 mainSection.style.visibility = "visible";
                 footer.style.display = "block";
-                // mainSection.style.flexWrap = "wrap";
-                // mainSection.classList.add("show");
-
             }
         };
         locationRequest.open("GET",`http://api.geonames.org/postalCodeSearchJSON?postalcode=${zipInput.value}&username=pattonkb`);
@@ -210,13 +205,14 @@ function createWeek(weatherWeek) {
 }
 
 function createSkycons(type, canvas, weatherData) {
-    console.log(weatherData);
     let canvases = document.querySelectorAll(canvas);
+    // let uniqueId = `${type}-weather-icon`;
+    // canvases[0].setAttribute("id", `${uniqueId}`);
+    // skycons.set(uniqueId, weatherData.icon);
     for (let i = 0; i < weatherData.length; i += 1) {
-        let uniqueId = `${type}weather-icon` + i;
+        uniqueId = `${type}-weather-icon` + i;
         canvases[i].setAttribute("id", `${uniqueId}`);
         skycons.add(uniqueId, weatherData[i].icon);
-
     }
  }
 
@@ -269,15 +265,23 @@ function createSkycons(type, canvas, weatherData) {
  });
 
 
-// forecastSwitch.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     if (e.target === hourButton) {
-//         forecastDay.style.display = "none";
-//         hourButton.style.backgroundColor = "red";
-//         forecastHour.style.display = "flex";
-//     }  else if (e.target === dayButton) {
-//         forecastDay.style.display = "flex";
-//         dayButton.style.backgroundColor = "red";
-//         forecastHour.style.display = "none";
-//     }
-// });
+ const body = document.body;
+ const buttons = document.querySelectorAll("button");
+ console.log(buttons);
+ const input = document.querySelector("input");
+ const darkModeButton = document.querySelector(".dark-mode-button");
+ darkModeButton.addEventListener("click", () => {
+     if (body.className === "") {
+         body.classList.add("dark-mode");
+         input.classList.add("dark-mode");
+         for (let i = 0; i < buttons.length; i += 1) {
+             buttons[i].classList.add("dark-mode");
+         }
+     } else {
+         body.classList.remove("dark-mode");
+         input.classList.remove("dark-mode");
+         for (let i = 0; i < buttons.length; i += 1) {
+             buttons[i].classList.remove("dark-mode");
+         }
+     }
+ });

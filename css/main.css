@@ -56,10 +56,6 @@ body {
   margin: 1rem;
   text-align: center; }
 
-.dark-mode {
-  color: #5CE0E0;
-  background-color: #343F45; }
-
 h1 {
   font-size: 2rem; }
 
@@ -121,6 +117,10 @@ p {
     flex-direction: column;
     width: 50%;
     align-self: stretch; } }
+
+.dark-mode {
+  color: #5CE0E0;
+  background-color: #343F45; }
 
 @media (min-width: 430px) {
   .current {
