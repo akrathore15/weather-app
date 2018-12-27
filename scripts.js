@@ -130,7 +130,7 @@ weatherLocator.addEventListener("click", (e) => {
                 footer.style.display = "block";
             }
         };
-        locationRequest.open("GET",`http://api.geonames.org/postalCodeSearchJSON?postalcode=${zipInput.value}&username=pattonkb`);
+        locationRequest.open("GET",`http://api.geonames.org/postalCodeSearchJSON?postalcode=${zipInput.value}&country=US&username=pattonkb`);
         locationRequest.send();
         zipInput.value="";
     } else {
