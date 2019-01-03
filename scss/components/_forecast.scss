@@ -13,8 +13,6 @@
 
 .button-daily,
 .button-hourly {
-    font-family: $font-family--primary;
-    border-radius: $border-default;
     margin: .5rem;
     width: 50%;
     @include media("medium") {
