@@ -194,7 +194,7 @@ function createWeek(weatherWeek) {
         for (let i = 0; i < weatherWeek.length; i +=1) {
             day += `<div class="today day">
                         <span class="precip">${weatherWeek[i].precipProbability}%</span>
-                        <span class="precip-intensity-max">${(weatherWeek[i].precipIntensityMax).toFixed(2)}"</span>
+                        <span class="precip-intensity-max">${weatherWeek[i].precipIntensityMax.toFixed(2)}"</span>
                         <span class="day-date">${moment().add(i,"d").format("dddd D")}</span>
                         <canvas class="day-icon"></canvas>
                         <span class="high-low-temp">${Math.round(weatherWeek[i].temperatureHigh)}|${Math.round(weatherWeek[i].temperatureLow)}</span>
