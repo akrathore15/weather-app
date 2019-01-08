@@ -139,7 +139,7 @@ weatherLocator.addEventListener("click", (e) => {
 });
 
 
-function createCurrent(weatherCurrently, weatherDataToday, weatherDataHourly) {
+function createCurrent(weatherCurrently, weatherDataToday) {
     let current =  `<div class="current-weather-container">
                         <div class="current-weather">
                             <span class="current-high-low">${Math.round(weatherDataToday.temperatureHigh)}&deg;|${Math.round(weatherDataToday.temperatureLow)}&deg;</span>
