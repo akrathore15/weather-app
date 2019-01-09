@@ -167,7 +167,7 @@ function createCurrent(weatherCurrently, weatherDataToday) {
 }
 
 function createDetails(weatherDataToday) {
-    const detail = `<p>Day/Date:</p><span class="day-date">${moment().format("dddd D")}</span>
+    const detail = `<p>Day/Date:</p><span class="day-date">${moment.unix(weatherDataToday.time).format("dddd D")}</span>
                     <p>Summary:</p><span class="day-summary">${weatherDataToday.summary}</span>
                     <p>Rain Accumulation:</p><span class="precip-accumulation">${(weatherDataToday.precipIntensityMax * 0.39370).toFixed(2)}"</span>
                     <p>Humidity:</p><span class="humidity">${weatherDataToday.humidity}%</span>
@@ -179,7 +179,7 @@ function createHourly(weatherHourly) {
     let hour = "";
     for (let i = 0; i < weatherHourly.length; i += 1) {
         hour += `<div class="hourly">
-                    <span class="hour">${moment().add(i, "h").format("hA")}</span>
+                    <span class="hour">${moment.unix(weatherHourly[i].time).format("hA")}</span>
                     <span class="wind">${Math.round(weatherHourly[i].temperature)}&deg;</span>
                     <canvas class="hour-icon"></canvas>
                     <span class="wind">${weatherHourly[i].windSpeed}</span>
