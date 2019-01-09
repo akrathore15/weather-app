@@ -68,7 +68,6 @@ weatherLocator.addEventListener("click", (e) => {
                                 // createSkycons("current", "current-icon", weatherCurrently )
                                 const skycons = new Skycons({"color": "grey"});
                                 skycons.set("current-icon", weatherCurrently.icon);
-                                skycons.play();
 
                                 //change current info border color depending on temperature
                                 const currentWeather = document.querySelector(".current-weather");
@@ -190,7 +189,6 @@ function createHourly(weatherHourly) {
 
 function createWeek(weatherWeek) {
     let day = "";
-    const skyconsDay = new Skycons({"color": "grey"});
         for (let i = 0; i < weatherWeek.length; i +=1) {
             day += `<div class="today day">
                         <span class="precip">${weatherWeek[i].precipProbability}%</span>
