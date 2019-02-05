@@ -22,7 +22,7 @@ byPass();
 
 //verify 5-digit zip code
 function isValidUSZip(sZip) {
-   return /^\d{5}(-\d{4})?$/.test(sZip);
+   return /\d{5}-\d{4}$|^\d{5}$/.test(sZip);
 }
 
 const currentLocation = document.querySelector(".location-current");
